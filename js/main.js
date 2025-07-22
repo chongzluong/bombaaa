@@ -52,6 +52,9 @@ function startGame() {
             return;
         }
         
+        // Store current settings for next game
+        UI.storeGameSettings(playerNames, UI.elements.startingNumber.value, UI.elements.randomizeOrder.checked);
+        
         // Add players to game state
         GameState.init();
         playerNames.forEach(name => GameState.addPlayer(name));

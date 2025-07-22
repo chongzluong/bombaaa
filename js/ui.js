@@ -111,6 +111,45 @@ const UI = {
         }
     },
 
+    // Store game settings for next game
+    storeGameSettings(playerNames, startingNumber, randomizeOrder) {
+        this.lastGameSettings = {
+            playerNames: [...playerNames],
+            startingNumber: startingNumber,
+            randomizeOrder: randomizeOrder
+        };
+    },
+
+    // Restore game settings from previous game
+    restoreGameSettings() {
+        if (!this.lastGameSettings) return;
+        
+        const { playerNames, startingNumber, randomizeOrder } = this.lastGameSettings;
+        
+        // Restore starting number and randomize order
+        this.elements.startingNumber.value = startingNumber;
+        this.elements.randomizeOrder.checked = randomizeOrder;
+        
+        // Restore player names and count
+        const currentPlayers = this.elements.playerInputs.children;
+        
+        // Add/remove players to match previous count
+        while (currentPlayers.length < playerNames.length) {
+            this.addPlayerInput();
+        }
+        while (currentPlayers.length > playerNames.length && currentPlayers.length > 2) {
+            this.elements.playerInputs.removeChild(this.elements.playerInputs.lastChild);
+        }
+        
+        // Set player names
+        const nameInputs = document.querySelectorAll('.player-name');
+        nameInputs.forEach((input, index) => {
+            if (index < playerNames.length) {
+                input.value = playerNames[index];
+            }
+        });
+    },
+
     // Get all player names from inputs
     getPlayerNames() {
         const nameInputs = document.querySelectorAll('.player-name');
@@ -250,16 +289,7 @@ const UI = {
             explosion.remove();
         }
         
-        // Clear player inputs
-        const nameInputs = document.querySelectorAll('.player-name');
-        nameInputs.forEach(input => input.value = '');
-        
-        // Keep only first two player inputs
-        while (this.elements.playerInputs.children.length > 2) {
-            this.elements.playerInputs.removeChild(this.elements.playerInputs.lastChild);
-        }
-        
-        // Reset starting number input
-        this.elements.startingNumber.value = '';
+        // Restore previous game settings instead of clearing
+        this.restoreGameSettings();
     }
 };
