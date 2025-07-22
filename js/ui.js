@@ -15,6 +15,7 @@ const UI = {
             currentPlayer: document.getElementById('current-player'),
             rollButton: document.getElementById('roll-button'),
             gameOver: document.getElementById('game-over'),
+            gameOverText: document.getElementById('game-over-text'),
             loserText: document.getElementById('loser-text'),
             bomb: document.getElementById('bomb'),
             bombMouth: document.getElementById('bomb-mouth'),
@@ -151,9 +152,15 @@ const UI = {
         this.elements.rollButton.style.display = 'none';
         this.elements.playerInfo.style.display = 'none';
         
+        // Wait for explosion animation to complete before hiding bomb container
         setTimeout(() => {
+            const bombContainer = document.querySelector('.bomb-container');
+            bombContainer.style.display = 'none';
+            
+            // Show game over elements immediately after hiding bomb container
             this.elements.gameOver.classList.add('active');
-        }, 500);
+            this.elements.gameOverText.classList.add('active');
+        }, 1000);
     },
 
     // Reset UI to initial state
@@ -164,11 +171,16 @@ const UI = {
         // Show setup screen
         this.showSetupScreen();
         this.elements.gameOver.classList.remove('active');
+        this.elements.gameOverText.classList.remove('active');
         
         // Show hidden elements
         this.elements.rollButton.style.display = '';
         this.elements.playerInfo.style.display = '';
         this.elements.bomb.style.display = '';
+        
+        // Show bomb container
+        const bombContainer = document.querySelector('.bomb-container');
+        bombContainer.style.display = '';
         
         // Remove explosion if it exists
         const explosion = document.querySelector('.explosion');

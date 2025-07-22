@@ -28,7 +28,7 @@
             
             <div class="player-setup" style="margin-top: 2rem;">
                 <h3>Starting Number</h3>
-                <input type="number" id="starting-number" placeholder="Enter starting number (2-10,000,000)" min="2" max="10000000">
+                <input type="number" id="starting-number" placeholder="Enter starting number (minimum 2)" min="2">
                 <button class="quick-start" onclick="randomizeStartingNumber()">Randomize Starting Number</button>
             </div>
             
@@ -62,6 +62,10 @@
                 </div>
             </div>
             
+            <div class="game-over" id="game-over">
+                <div class="skull">💀</div>
+            </div>
+            
             <div class="current-number" id="current-number">1000</div>
             
             <div class="player-info" id="player-info">
@@ -71,8 +75,7 @@
             
             <button id="roll-button" onclick="rollNumber()">Roll Number!</button>
             
-            <div class="game-over" id="game-over">
-                <div class="skull">💀</div>
+            <div class="game-over-text" id="game-over-text">
                 <h2>💥 BOOM! 💥</h2>
                 <p id="loser-text">Player lost!</p>
                 <button onclick="resetGame()">Play Again</button>
