@@ -12,21 +12,39 @@
     <div class="container">
         <h1>💣 Bombaaa 💣</h1>
         
-        <div class="setup-screen active">
+        <div class="players-screen active">
+            <h2>Players</h2>
             <div id="player-inputs">
                 <div class="player-setup">
-                    <h3>Player 1</h3>
+                    <div class="player-header">
+                        <h3>Player 1</h3>
+                    </div>
                     <input type="text" placeholder="Enter name" class="player-name" data-player="0">
                 </div>
                 <div class="player-setup">
-                    <h3>Player 2</h3>
+                    <div class="player-header">
+                        <h3>Player 2</h3>
+                    </div>
                     <input type="text" placeholder="Enter name" class="player-name" data-player="1">
                 </div>
             </div>
             
             <button onclick="addPlayer()">Add Player</button>
             
-            <div class="player-setup" style="margin-top: 2rem;">
+            <div class="navigation-buttons">
+                <button onclick="goToGameSettings()" class="next-button">Next: Game Settings →</button>
+            </div>
+        </div>
+        
+        <div class="settings-screen">
+            <h2>Game Settings</h2>
+            
+            <div class="player-summary">
+                <h3>Players</h3>
+                <div id="player-names-display"></div>
+            </div>
+            
+            <div class="player-setup">
                 <h3>Starting Number</h3>
                 <input type="number" id="starting-number" placeholder="Enter starting number (minimum 2)" min="2">
                 <button class="quick-start" onclick="randomizeStartingNumber()">Randomize Starting Number</button>
@@ -39,7 +57,10 @@
                 </label>
             </div>
             
-            <button onclick="startGame()">Start Game</button>
+            <div class="navigation-buttons">
+                <button onclick="goToPlayers()" class="back-button">← Back: Players</button>
+                <button onclick="startGame()" class="start-button">Start Game</button>
+            </div>
         </div>
         
         <div class="game-screen">

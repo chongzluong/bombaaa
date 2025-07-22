@@ -5,7 +5,8 @@ const UI = {
     // Initialize UI elements
     init() {
         this.elements = {
-            setupScreen: document.querySelector('.setup-screen'),
+            playersScreen: document.querySelector('.players-screen'),
+            settingsScreen: document.querySelector('.settings-screen'),
             gameScreen: document.querySelector('.game-screen'),
             playerInputs: document.getElementById('player-inputs'),
             startingNumber: document.getElementById('starting-number'),
@@ -23,15 +24,39 @@ const UI = {
         };
     },
 
-    // Show setup screen
-    showSetupScreen() {
-        this.elements.setupScreen.classList.add('active');
+    // Show players screen
+    showPlayersScreen() {
+        this.elements.playersScreen.classList.add('active');
+        this.elements.settingsScreen.classList.remove('active');
         this.elements.gameScreen.classList.remove('active');
+    },
+
+    // Show settings screen
+    showSettingsScreen() {
+        this.elements.playersScreen.classList.remove('active');
+        this.elements.settingsScreen.classList.add('active');
+        this.elements.gameScreen.classList.remove('active');
+        this.updatePlayerNamesDisplay();
+    },
+
+    // Update player names display in settings screen
+    updatePlayerNamesDisplay() {
+        const playerNames = this.getPlayerNames();
+        const display = document.getElementById('player-names-display');
+        
+        display.innerHTML = '';
+        playerNames.forEach(name => {
+            const tag = document.createElement('span');
+            tag.className = 'player-tag';
+            tag.textContent = name;
+            display.appendChild(tag);
+        });
     },
 
     // Show game screen
     showGameScreen() {
-        this.elements.setupScreen.classList.remove('active');
+        this.elements.playersScreen.classList.remove('active');
+        this.elements.settingsScreen.classList.remove('active');
         this.elements.gameScreen.classList.add('active');
     },
 
@@ -41,12 +66,49 @@ const UI = {
         
         const newPlayer = document.createElement('div');
         newPlayer.className = 'player-setup';
+        
+        // Only add remove button for player 3 and onwards (index 2+)
+        const removeButton = playerCount >= 2 ? 
+            `<button class="remove-player" onclick="removePlayer(${playerCount})">✕</button>` : '';
+        
         newPlayer.innerHTML = `
-            <h3>Player ${playerCount + 1}</h3>
+            <div class="player-header">
+                <h3>Player ${playerCount + 1}</h3>
+                ${removeButton}
+            </div>
             <input type="text" placeholder="Enter name" class="player-name" data-player="${playerCount}">
         `;
         
         this.elements.playerInputs.appendChild(newPlayer);
+    },
+
+    // Remove a player input field
+    removePlayerInput(index) {
+        const players = this.elements.playerInputs.children;
+        if (players.length <= 2) {
+            alert('You need at least 2 players!');
+            return;
+        }
+        
+        players[index].remove();
+        this.updatePlayerNumbers();
+    },
+
+    // Update player numbers after removal
+    updatePlayerNumbers() {
+        const players = this.elements.playerInputs.children;
+        for (let i = 0; i < players.length; i++) {
+            const header = players[i].querySelector('h3');
+            const input = players[i].querySelector('.player-name');
+            const removeButton = players[i].querySelector('.remove-player');
+            
+            header.textContent = `Player ${i + 1}`;
+            input.setAttribute('data-player', i);
+            
+            if (removeButton) {
+                removeButton.setAttribute('onclick', `removePlayer(${i})`);
+            }
+        }
     },
 
     // Get all player names from inputs
@@ -168,8 +230,8 @@ const UI = {
         // Reset body classes
         document.body.className = '';
         
-        // Show setup screen
-        this.showSetupScreen();
+        // Show players screen
+        this.showPlayersScreen();
         this.elements.gameOver.classList.remove('active');
         this.elements.gameOverText.classList.remove('active');
         

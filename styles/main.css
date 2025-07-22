@@ -49,12 +49,107 @@ h1 {
 }
 
 /* Screen management */
-.setup-screen, .game-screen {
+.players-screen, .settings-screen, .game-screen {
     display: none;
 }
 
-.setup-screen.active, .game-screen.active {
+.players-screen.active, .settings-screen.active, .game-screen.active {
     display: block;
+}
+
+/* Screen titles */
+h2 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Player header with remove button */
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.remove-player {
+    background: #e53e3e;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.remove-player:hover {
+    background: #c53030;
+    transform: scale(1.1);
+}
+
+/* Navigation buttons */
+.navigation-buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.back-button {
+    background: #6c757d;
+}
+
+.back-button:hover {
+    background: #5a6268;
+}
+
+.next-button {
+    background: #48bb78;
+}
+
+.next-button:hover {
+    background: #38a169;
+}
+
+.start-button {
+    background: #667eea;
+    font-weight: bold;
+}
+
+.start-button:hover {
+    background: #5a6fd8;
+}
+
+/* Player summary in settings */
+.player-summary {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.player-summary h3 {
+    margin-bottom: 0.5rem;
+}
+
+#player-names-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.player-tag {
+    background: #667eea;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
 }
 
 /* Player setup */

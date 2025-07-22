@@ -12,6 +12,28 @@ function addPlayer() {
     UI.addPlayerInput();
 }
 
+// Remove a player input field
+function removePlayer(index) {
+    UI.removePlayerInput(index);
+}
+
+// Navigate to game settings screen
+function goToGameSettings() {
+    // Validate minimum players before proceeding
+    const playerNames = UI.getPlayerNames();
+    if (playerNames.length < 2) {
+        alert('You need at least 2 players!');
+        return;
+    }
+    
+    UI.showSettingsScreen();
+}
+
+// Navigate back to players screen
+function goToPlayers() {
+    UI.showPlayersScreen();
+}
+
 // Generate a random starting number
 function randomizeStartingNumber() {
     const randomNumber = GameLogic.generateRandomStartingNumber();
