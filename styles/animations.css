@@ -1,0 +1,104 @@
+/* Pulse animation for critical danger */
+@keyframes pulse {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.2); }
+    100% { filter: brightness(1); }
+}
+
+/* Bomb flash animations */
+.bomb.flashing {
+    animation: bombFlash 2s infinite;
+}
+
+.bomb.flashing-fast {
+    animation: bombFlash 1s infinite;
+}
+
+.bomb.flashing-faster {
+    animation: bombFlash 0.5s infinite;
+}
+
+.bomb.flashing-critical {
+    animation: bombFlash 0.2s infinite;
+}
+
+.bomb.shaking {
+    animation: shake 0.5s infinite;
+}
+
+/* Combined animations */
+.bomb.flashing.shaking {
+    animation: bombFlash 2s infinite, shake 0.5s infinite;
+}
+
+.bomb.flashing-fast.shaking {
+    animation: bombFlash 1s infinite, shake 0.5s infinite;
+}
+
+.bomb.flashing-faster.shaking {
+    animation: bombFlash 0.5s infinite, shake 0.5s infinite;
+}
+
+.bomb.flashing-critical.shaking {
+    animation: bombFlash 0.2s infinite, shake 0.5s infinite;
+}
+
+@keyframes bombFlash {
+    0%, 100% { 
+        background: #2d3436;
+        box-shadow: 0 0 0 rgba(255, 107, 107, 0);
+    }
+    50% { 
+        background: #e74c3c;
+        box-shadow: 0 0 30px rgba(255, 107, 107, 0.8);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px) rotate(-5deg); }
+    75% { transform: translateX(5px) rotate(5deg); }
+}
+
+/* Spark flicker animation */
+@keyframes flicker {
+    0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.8; transform: translateX(-50%) scale(1.2); }
+}
+
+/* Number roll animations */
+.roll-animation {
+    animation: rollNumber 0.5s ease-out;
+}
+
+@keyframes rollNumber {
+    0% { transform: scale(0.5) rotate(180deg); opacity: 0; }
+    50% { transform: scale(1.2) rotate(90deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.high-roll {
+    animation: celebrate 0.5s ease-out;
+}
+
+@keyframes celebrate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5) rotate(10deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.low-roll {
+    animation: danger 0.5s ease-out;
+}
+
+@keyframes danger {
+    0%, 100% { transform: scale(1); }
+    25%, 75% { transform: scale(0.95); }
+    50% { transform: scale(1.05); }
+}
+
+/* Explosion animation */
+@keyframes explode {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+}

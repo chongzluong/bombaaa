@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.5s ease;
+}
+
+/* Danger level backgrounds */
+body.danger-low {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+body.danger-medium {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+body.danger-high {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+}
+
+body.danger-critical {
+    background: linear-gradient(135deg, #c0392b 0%, #8e44ad 100%);
+    animation: pulse 0.5s infinite;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    width: 500px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+/* Screen management */
+.setup-screen, .game-screen {
+    display: none;
+}
+
+.setup-screen.active, .game-screen.active {
+    display: block;
+}
+
+/* Player setup */
+.player-setup {
+    margin: 0.5rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+/* Form elements */
+input {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Buttons */
+button {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0.5rem;
+    transition: all 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.quick-start {
+    background: #48bb78;
+}
+
+.randomize {
+    background: #ed8936;
+}
+
+/* Bomb styling */
+.bomb-container {
+    position: relative;
+    margin: 2rem 0;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bomb {
+    width: 150px;
+    height: 150px;
+    background: #2d3436;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fuse {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 40px;
+    background: #8b6914;
+}
+
+.spark {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #ff6b6b 0%, #feca57 50%, transparent 70%);
+    border-radius: 50%;
+    animation: flicker 0.2s infinite;
+}
+
+/* Game display */
+.current-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #2d3436;
+    margin: 1rem 0;
+}
+
+.player-info {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+.high-roll {
+    color: #48bb78;
+}
+
+.low-roll {
+    color: #e53e3e;
+}
+
+.explosion {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #ff6b6b 0%, #ee5a24 30%, #c0392b 60%, transparent 70%);
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.game-over {
+    display: none;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 20;
+}
+
+.game-over.active {
+    display: block;
+}
+
+.game-over h2 {
+    color: #e53e3e;
+    margin-bottom: 1rem;
+}

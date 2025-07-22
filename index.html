@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bombaaa</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+    <div class="container">
+        <h1>💣 Bombaaa 💣</h1>
+        
+        <div class="setup-screen active">
+            <div id="player-inputs">
+                <div class="player-setup">
+                    <h3>Player 1</h3>
+                    <input type="text" placeholder="Enter name" class="player-name" data-player="0">
+                </div>
+                <div class="player-setup">
+                    <h3>Player 2</h3>
+                    <input type="text" placeholder="Enter name" class="player-name" data-player="1">
+                </div>
+            </div>
+            
+            <button onclick="addPlayer()">Add Player</button>
+            
+            <div class="player-setup" style="margin-top: 2rem;">
+                <h3>Starting Number</h3>
+                <input type="number" id="starting-number" placeholder="Enter starting number (2-10,000,000)" min="2" max="10000000">
+                <button class="quick-start" onclick="randomizeStartingNumber()">Randomize Starting Number</button>
+            </div>
+            
+            <div style="margin: 1rem 0;">
+                <label style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                    <input type="checkbox" id="randomize-order" checked style="width: auto;">
+                    <span>Randomize player order</span>
+                </label>
+            </div>
+            
+            <button onclick="startGame()">Start Game</button>
+        </div>
+        
+        <div class="game-screen">
+            <div class="bomb-container">
+                <div class="bomb" id="bomb">
+                    <div class="fuse"></div>
+                    <div class="spark"></div>
+                    <div class="bomb-face">
+                        <div class="bomb-eyes">
+                            <div class="eye">
+                                <div class="pupil"></div>
+                            </div>
+                            <div class="eye">
+                                <div class="pupil"></div>
+                            </div>
+                        </div>
+                        <div class="mouth smile" id="bomb-mouth"></div>
+                        <div class="sweat"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="current-number" id="current-number">1000</div>
+            
+            <div class="player-info" id="player-info">
+                <h3 id="current-player">Player's Turn</h3>
+                <p>Rolling between 1 and <span id="max-number">1000</span></p>
+            </div>
+            
+            <button id="roll-button" onclick="rollNumber()">Roll Number!</button>
+            
+            <div class="game-over" id="game-over">
+                <div class="skull">💀</div>
+                <h2>💥 BOOM! 💥</h2>
+                <p id="loser-text">Player lost!</p>
+                <button onclick="resetGame()">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/gameState.js"></script>
+    <script src="js/gameLogic.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
