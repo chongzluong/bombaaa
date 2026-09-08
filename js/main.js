@@ -34,6 +34,16 @@ function goToPlayers() {
     UI.showPlayersScreen();
 }
 
+// Open completed game history from the home screen
+function openGameHistory() {
+    UI.openGameHistory();
+}
+
+// Close the game history dialog
+function closeGameHistory() {
+    UI.closeGameHistory();
+}
+
 // Generate a random starting number
 function randomizeStartingNumber() {
     const randomNumber = GameLogic.generateRandomStartingNumber();

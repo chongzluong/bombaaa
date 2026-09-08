@@ -21,7 +21,8 @@ const UI = {
             bomb: document.getElementById('bomb'),
             bombMouth: document.getElementById('bomb-mouth'),
             playerInfo: document.getElementById('player-info'),
-            historyList: document.getElementById('history-list')
+            historyList: document.getElementById('history-list'),
+            historyDialog: document.getElementById('history-dialog')
         };
     },
 
@@ -38,7 +39,6 @@ const UI = {
         this.elements.settingsScreen.classList.add('active');
         this.elements.gameScreen.classList.remove('active');
         this.updatePlayerNamesDisplay();
-        this.renderGameHistory();
     },
 
     // Update player names display in settings screen
@@ -211,6 +211,15 @@ const UI = {
         });
     },
 
+    openGameHistory() {
+        this.renderGameHistory();
+        this.elements.historyDialog.showModal();
+    },
+
+    closeGameHistory() {
+        this.elements.historyDialog.close();
+    },
+
     // Update the main game display
     updateGameDisplay() {
         this.elements.currentNumber.textContent = GameState.currentMax.toLocaleString();
@@ -316,6 +325,10 @@ const UI = {
     resetUI() {
         // Reset body classes
         document.body.className = '';
+
+        if (this.elements.historyDialog.open) {
+            this.closeGameHistory();
+        }
         
         // Show players screen
         this.showPlayersScreen();

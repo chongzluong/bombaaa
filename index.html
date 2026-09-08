@@ -13,7 +13,10 @@
         <h1>💣 Bombaaa 💣</h1>
         
         <div class="players-screen active">
-            <h2>Players</h2>
+            <div class="home-screen-header">
+                <h2>Players</h2>
+                <button class="history-pill" onclick="openGameHistory()" aria-haspopup="dialog" aria-controls="history-dialog">History</button>
+            </div>
             <div id="player-inputs">
                 <div class="player-setup">
                     <div class="player-header">
@@ -57,12 +60,6 @@
                 </label>
             </div>
 
-            <section class="history-panel" aria-labelledby="history-heading">
-                <h3 id="history-heading">Game History</h3>
-                <p class="history-note">Completed games are saved in this browser.</p>
-                <div id="history-list"></div>
-            </section>
-            
             <div class="navigation-buttons">
                 <button onclick="goToPlayers()" class="back-button">← Back: Players</button>
                 <button onclick="startGame()" class="start-button">Start Game</button>
@@ -109,6 +106,15 @@
             </div>
         </div>
     </div>
+
+    <dialog id="history-dialog" class="history-dialog" aria-labelledby="history-heading">
+        <div class="history-dialog-header">
+            <h2 id="history-heading">Game History</h2>
+            <button class="history-dialog-close" type="button" onclick="closeGameHistory()" aria-label="Close game history">×</button>
+        </div>
+        <p class="history-note">Completed games saved in this browser.</p>
+        <div id="history-list" class="history-list"></div>
+    </dialog>
 
     <script src="js/gameState.js"></script>
     <script src="js/gameLogic.js"></script>
