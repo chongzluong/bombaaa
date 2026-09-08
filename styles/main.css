@@ -152,6 +152,55 @@ h2 {
     font-size: 0.9rem;
 }
 
+/* Browser-local game history */
+.history-panel {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.history-panel > h3 {
+    text-align: center;
+}
+
+.history-note,
+.history-empty {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.history-note {
+    margin: 0.35rem 0 1rem;
+    text-align: center;
+}
+
+.history-game {
+    margin-top: 0.45rem;
+    padding: 0.6rem;
+    background: white;
+    border-left: 4px solid #667eea;
+    border-radius: 6px;
+}
+
+.history-game summary {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.history-game p {
+    margin-top: 0.45rem;
+    font-size: 0.9rem;
+}
+
+.history-sequence {
+    max-height: 180px;
+    margin: 0.5rem 0 0 1.25rem;
+    overflow-y: auto;
+    font-size: 0.9rem;
+}
+
 /* Player setup */
 .player-setup {
     margin: 0.25rem 0;

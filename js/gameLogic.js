@@ -45,6 +45,7 @@ const GameLogic = {
             throw new Error('Game is not active');
         }
 
+        const playerName = GameState.getCurrentPlayer().name;
         const rolled = this.rollNumber(currentMax);
         
         const result = {
@@ -54,6 +55,8 @@ const GameLogic = {
             isLowRoll: this.isLowRoll(rolled, currentMax),
             percentage: this.getRollPercentage(rolled, currentMax)
         };
+
+        GameState.recordRoll(playerName, currentMax, rolled);
 
         if (result.isGameOver) {
             GameState.endGame();

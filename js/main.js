@@ -92,6 +92,16 @@ function rollNumber() {
         
         // Handle game over
         if (result.isGameOver) {
+            const saved = GameHistory.recordCompletedGame({
+                players: GameState.players.map(player => player.name),
+                loser: GameState.getCurrentPlayer().name,
+                startingNumber: GameState.startingNumber,
+                startedAt: GameState.startedAt,
+                sequence: GameState.rollHistory
+            });
+            if (!saved) {
+                console.warn('This game completed, but its history could not be persisted.');
+            }
             UI.showExplosion();
             UI.showGameOver();
         } else {

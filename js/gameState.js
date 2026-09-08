@@ -5,6 +5,9 @@ const GameState = {
     currentMax: 1000,
     gameActive: false,
     firstRoll: true,
+    startingNumber: 1000,
+    startedAt: null,
+    rollHistory: [],
 
     // Initialize game state
     init() {
@@ -13,6 +16,9 @@ const GameState = {
         this.currentMax = 1000;
         this.gameActive = false;
         this.firstRoll = true;
+        this.startingNumber = 1000;
+        this.startedAt = null;
+        this.rollHistory = [];
     },
 
     // Add a player to the game
@@ -35,6 +41,16 @@ const GameState = {
         this.currentMax = value;
     },
 
+    // Record the exact details of a roll for completed-game history
+    recordRoll(playerName, maxBefore, rolled) {
+        this.rollHistory.push({
+            turn: this.rollHistory.length + 1,
+            playerName,
+            maxBefore,
+            rolled
+        });
+    },
+
     // Check if game is in a dangerous state
     getDangerLevel() {
         if (this.firstRoll) return 'safe';
@@ -53,6 +69,9 @@ const GameState = {
         }
 
         this.currentMax = startingNumber;
+        this.startingNumber = startingNumber;
+        this.startedAt = new Date().toISOString();
+        this.rollHistory = [];
         
         if (randomizeOrder) {
             this.players.sort(() => Math.random() - 0.5);

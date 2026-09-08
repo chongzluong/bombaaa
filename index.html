@@ -56,6 +56,12 @@
                     <span>Randomize player order</span>
                 </label>
             </div>
+
+            <section class="history-panel" aria-labelledby="history-heading">
+                <h3 id="history-heading">Game History</h3>
+                <p class="history-note">Completed games are saved in this browser.</p>
+                <div id="history-list"></div>
+            </section>
             
             <div class="navigation-buttons">
                 <button onclick="goToPlayers()" class="back-button">← Back: Players</button>
@@ -106,6 +112,7 @@
 
     <script src="js/gameState.js"></script>
     <script src="js/gameLogic.js"></script>
+    <script src="js/gameHistory.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/main.js"></script>
 </body>

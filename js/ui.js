@@ -20,7 +20,8 @@ const UI = {
             loserText: document.getElementById('loser-text'),
             bomb: document.getElementById('bomb'),
             bombMouth: document.getElementById('bomb-mouth'),
-            playerInfo: document.getElementById('player-info')
+            playerInfo: document.getElementById('player-info'),
+            historyList: document.getElementById('history-list')
         };
     },
 
@@ -37,6 +38,7 @@ const UI = {
         this.elements.settingsScreen.classList.add('active');
         this.elements.gameScreen.classList.remove('active');
         this.updatePlayerNamesDisplay();
+        this.renderGameHistory();
     },
 
     // Update player names display in settings screen
@@ -161,6 +163,52 @@ const UI = {
         }
         
         return names;
+    },
+
+    // Render completed games saved by this browser
+    renderGameHistory() {
+        const games = GameHistory.getGames();
+        this.elements.historyList.innerHTML = '';
+
+        if (games.length === 0) {
+            const emptyMessage = document.createElement('p');
+            emptyMessage.className = 'history-empty';
+            emptyMessage.textContent = 'No completed games in this browser yet.';
+            this.elements.historyList.appendChild(emptyMessage);
+            return;
+        }
+
+        games.forEach(game => {
+            const details = document.createElement('details');
+            details.className = 'history-game';
+
+            const summary = document.createElement('summary');
+            const date = new Date(game.completedAt).toLocaleString();
+            summary.textContent = `${game.loser} bomba\u2019d \u2014 ${date}`;
+            details.appendChild(summary);
+
+            const players = document.createElement('p');
+            players.textContent = `Players: ${game.players.join(', ')}`;
+            details.appendChild(players);
+
+            const result = document.createElement('p');
+            result.textContent = `Winner${game.winners.length === 1 ? '' : 's'}: ${game.winners.join(', ')}. Bomba\u2019d: ${game.loser}.`;
+            details.appendChild(result);
+
+            const startingNumber = document.createElement('p');
+            startingNumber.textContent = `Starting number: ${game.startingNumber.toLocaleString()}`;
+            details.appendChild(startingNumber);
+
+            const sequence = document.createElement('ol');
+            sequence.className = 'history-sequence';
+            game.sequence.forEach(roll => {
+                const item = document.createElement('li');
+                item.textContent = `${roll.playerName}: ${roll.maxBefore.toLocaleString()} \u2192 ${roll.rolled.toLocaleString()}`;
+                sequence.appendChild(item);
+            });
+            details.appendChild(sequence);
+            this.elements.historyList.appendChild(details);
+        });
     },
 
     // Update the main game display

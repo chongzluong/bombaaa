@@ -32,6 +32,7 @@ bombaaa/
 └── js/
     ├── gameState.js
     ├── gameLogic.js
+    ├── gameHistory.js
     ├── ui.js
     └── main.js
 ```
@@ -157,6 +158,8 @@ The game adapts to different screen sizes:
 - Random player order option
 - Progressive tension as numbers get lower
 - Visual feedback for high/low rolls
+- Completed game history stored locally for each browser user
+- Exact turn-by-turn numerical sequences, opponents, and results
 
 ### Technical Features
 - Modular JavaScript architecture
@@ -174,6 +177,7 @@ The game adapts to different screen sizes:
 - **`styles/responsive.css`**: Mobile and responsive design
 - **`js/gameState.js`**: Game state management
 - **`js/gameLogic.js`**: Core game mechanics
+- **`js/gameHistory.js`**: Browser-local player history persistence
 - **`js/ui.js`**: User interface updates
 - **`js/main.js`**: Main controller and event handlers
 
