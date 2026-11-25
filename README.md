@@ -189,23 +189,20 @@ The game adapts to different screen sizes:
 
 ## 🚀 Deployment
 
-### Local Development
-1. No build process required
-2. Simply open `index.html` in a browser
-3. All assets are self-contained
+Netlify automatically publishes the static files from the `main` branch of
+`chongzluong/bombaaa` to [bombaaa.app](https://bombaaa.app/).
+A Git push is the only publishing step. No build command or hosting CLI login is required.
 
-### Production Deployment
-See the [Deployment Guide](deployment-guide.md) for:
-- Netlify hosting setup
-- Custom domain configuration with Namecheap
-- DNS configuration
-- HTTPS setup
+1. Open `index.html` locally and exercise the changed game flow. Run
+   `git diff --check` and review the files you intend to release.
+2. On `main`, run `git fetch origin main` and incorporate any newer commits from
+   `origin/main`. Stage and commit the intended files, then run `git push origin main`.
+3. Wait for Netlify to publish. Reload [bombaaa.app](https://bombaaa.app/) and
+   exercise the changed behavior. To confirm which version is served, compare a
+   changed HTML, CSS, or JavaScript file with the copy in the pushed commit.
 
-### Quick Deploy Options
-- **Netlify**: Drag and drop the project folder
-- **Vercel**: `npx vercel` in project directory
-- **GitHub Pages**: Push to GitHub and enable Pages
-- **Surge**: `npx surge` in project directory
+This workflow was verified with commit `d387001`: after the push, the live game
+displayed the upside-down number and kept both numbers in sync through rolls and replay.
 
 ## 🐛 Troubleshooting
 
