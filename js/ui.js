@@ -12,6 +12,7 @@ const UI = {
             startingNumber: document.getElementById('starting-number'),
             randomizeOrder: document.getElementById('randomize-order'),
             currentNumber: document.getElementById('current-number'),
+            tabletopNumber: document.getElementById('tabletop-number'),
             maxNumber: document.getElementById('max-number'),
             currentPlayer: document.getElementById('current-player'),
             rollButton: document.getElementById('roll-button'),
@@ -220,9 +221,15 @@ const UI = {
         this.elements.historyDialog.close();
     },
 
+    displayCurrentNumber(value) {
+        const formatted = value.toLocaleString();
+        this.elements.currentNumber.textContent = formatted;
+        this.elements.tabletopNumber.textContent = formatted;
+    },
+
     // Update the main game display
     updateGameDisplay() {
-        this.elements.currentNumber.textContent = GameState.currentMax.toLocaleString();
+        this.displayCurrentNumber(GameState.currentMax);
         this.elements.maxNumber.textContent = GameState.currentMax.toLocaleString();
         this.elements.currentPlayer.textContent = `${GameState.getCurrentPlayer().name}'s Turn`;
         
@@ -290,7 +297,7 @@ const UI = {
         
         // Update number after animation delay
         setTimeout(() => {
-            numberDisplay.textContent = result.rolled.toLocaleString();
+            this.displayCurrentNumber(result.rolled);
         }, 250);
     },
 

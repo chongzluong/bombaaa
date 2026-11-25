@@ -410,6 +410,13 @@ button:active {
 }
 
 /* Game display */
+.tabletop-number {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: bold;
+    color: #454b4d;
+    transform: rotate(180deg);
+}
+
 .current-number {
     font-size: 3rem;
     font-weight: bold;
